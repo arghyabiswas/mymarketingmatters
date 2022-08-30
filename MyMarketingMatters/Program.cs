@@ -1,8 +1,12 @@
+using MyMarketingMatters.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<ApiHandler>();
 
 var app = builder.Build();
 

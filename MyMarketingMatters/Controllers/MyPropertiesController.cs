@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyMarketingMatters.Services;
 
 namespace MyMarketingMatters.Controllers
 {
@@ -7,15 +8,19 @@ namespace MyMarketingMatters.Controllers
     public class MyPropertiesController : ControllerBase
     {
         private readonly ILogger<MyPropertiesController> logger;
+        private readonly ApiHandler apiHandler;
 
-        public MyPropertiesController(ILogger<MyPropertiesController> logger)
+        public MyPropertiesController(ILogger<MyPropertiesController> logger,
+            ApiHandler apiHandler)
         {
             this.logger = logger;
+            this.apiHandler = apiHandler;
         }
 
         [HttpGet]
         public IEnumerable<MyProperty> Get()
         {
+            var data = apiHandler.GetMyPropertiesAsync("ttr?agent=jtaylor@ttrsir.com&premium=0");
             var properties = new List<MyProperty>();
             properties.Add(new MyProperty()
             {
