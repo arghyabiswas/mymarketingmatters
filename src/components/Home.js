@@ -46,7 +46,8 @@ export class Home extends Component {
     }
 
     async populateWeatherData() {
-        const response = await fetch('myproperties');
+        debugger
+        const response = await fetch('https://api.mustbecool.com/ttr?agent=jtaylor%40ttrsir.com&premium=0', { mode: 'no-cors' });
         const data = await response.json();
         this.setState({ properties: data, loading: false });
     }
