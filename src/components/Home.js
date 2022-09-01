@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {AppConstants} from '../AppConstants';
 
 export class Home extends Component {
     static displayName = Home.name;
@@ -14,20 +15,36 @@ export class Home extends Component {
 
     static renderPropertiesTable(properties) {
         return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {properties.map(forecast =>
-                        <tr key={forecast.id}>
-                            <td>{forecast.name}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
+            properties.map(property =>
+                <div className="row" key={property.$id}>
+                    <div className="col-md-3">
+                        <img src={property.imageSource} />
+                    </div>
+                    <div className="col-md-4">
+                    <span>{property.StreetAddress}</span>
+                        <br />
+                        <span>{property.City}, {property.StateCode}, {property.ZipCode}</span>
+                        <p>
+                        {property.Description}
+                        </p>
+                    </div>
+                    <div className="col-md-1 text-center">
+                        <i className="bi bi-postcard"></i><br /><span>Create Postcard</span>
+                    </div>
+                    <div className="col-md-1 text-center">
+                        <i className="bi bi-facebook"></i><br /><span>Create Facebook Post</span>
+                    </div>
+                    <div className="col-md-1 text-center">
+                        <i className="bi bi-instagram"></i><br /><span>Create Instagram Post</span>
+                    </div>
+                    <div className="col-md-1 text-center">
+                        <i className="bi bi-twitter"></i><br /><span>Create Twitter Post</span>
+                    </div>
+                    <div className="col-md-1 text-center">
+                        <i className="bi bi-envelope"></i><br /><span>Create Email</span>
+                    </div>
+                </div>
+            )
         );
     }
 
@@ -46,9 +63,12 @@ export class Home extends Component {
     }
 
     async populateWeatherData() {
-        debugger
-        const response = await fetch('https://api.mustbecool.com/ttr?agent=jtaylor%40ttrsir.com&premium=0', { mode: 'no-cors' });
+        const subdomain = 'ttr';
+        const response = await fetch(`${AppConstants.API_URL}/${subdomain}?agent=${AppConstants.AGENT_ID}&premium=0`);
         const data = await response.json();
+        data.forEach(element => {
+            element.imageSource = `${AppConstants.API_URL}/Pictures.aspx?agent=${AppConstants.AGENT_ID}&site=${subdomain}&mlsid=${element.MLSId}`
+        });
         this.setState({ properties: data, loading: false });
     }
 }
