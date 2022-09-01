@@ -10,10 +10,10 @@ export class Home extends Component {
     }
 
     componentDidMount() {
-        this.populateWeatherData();
+        this.populatePropertyData();
     }
 
-    static renderPropertiesTable(properties) {
+    static renderPropertiesView(properties) {
         return (
             properties.map(property =>
                 <div className="row property-item" key={property.$id}>
@@ -50,7 +50,7 @@ export class Home extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : Home.renderPropertiesTable(this.state.properties);
+            : Home.renderPropertiesView(this.state.properties);
 
         return (
             <div >
@@ -63,7 +63,8 @@ export class Home extends Component {
         );
     }
 
-    async populateWeatherData() {
+    async populatePropertyData() {
+        //TODO Get Subdomain from URL
         const subdomain = 'ttr';
         const response = await fetch(`${AppConstants.API_URL}/${subdomain}?agent=${AppConstants.AGENT_ID}&premium=0`);
         const data = await response.json();
