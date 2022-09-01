@@ -16,32 +16,31 @@ export class Home extends Component {
     static renderPropertiesTable(properties) {
         return (
             properties.map(property =>
-                <div className="row" key={property.$id}>
-                    <div className="col-md-3">
+                <div className="row property-item" key={property.$id}>
+                    <div className="col-md-2">
                         <img src={property.imageSource} />
                     </div>
-                    <div className="col-md-4">
-                    <span>{property.StreetAddress}</span>
-                        <br />
-                        <span>{property.City}, {property.StateCode}, {property.ZipCode}</span>
-                        <p>
+                    <div className="col-md-5">
+                        <h6 >{property.StreetAddress}</h6>
+                        <h6>{property.City}, {property.StateCode}, {property.ZipCode}</h6>
+                        <p className='text-secondary'>
                         {property.Description}
                         </p>
                     </div>
                     <div className="col-md-1 text-center">
-                        <i className="bi bi-postcard"></i><br /><span>Create Postcard</span>
+                        <a href='#' className='empty-link'><i className="bi bi-postcard"></i><br /><span className='small'>Create Postcard</span></a>
                     </div>
                     <div className="col-md-1 text-center">
-                        <i className="bi bi-facebook"></i><br /><span>Create Facebook Post</span>
+                        <a href='#' className='empty-link'><i className="bi bi-facebook"></i><br /><span className='small'>Create Facebook Post</span></a>
                     </div>
                     <div className="col-md-1 text-center">
-                        <i className="bi bi-instagram"></i><br /><span>Create Instagram Post</span>
+                        <a href='#' className='empty-link'><i className="bi bi-instagram"></i><br /><span className='small'>Create Instagram Post</span></a>
                     </div>
                     <div className="col-md-1 text-center">
-                        <i className="bi bi-twitter"></i><br /><span>Create Twitter Post</span>
+                        <a href='#' className='empty-link'><i className="bi bi-twitter"></i><br /><span className='small'>Create Twitter Post</span></a>
                     </div>
                     <div className="col-md-1 text-center">
-                        <i className="bi bi-envelope"></i><br /><span>Create Email</span>
+                        <a href='#' className='empty-link'><i className="bi bi-envelope"></i><br /><span className='small'>Create Email</span></a>
                     </div>
                 </div>
             )
@@ -54,9 +53,11 @@ export class Home extends Component {
             : Home.renderPropertiesTable(this.state.properties);
 
         return (
-            <div>
-                <h4 id="tabelLabel" >ACTIVE LISTING</h4>
-                <h2>MY PROPERTIES</h2>
+            <div >
+                <div className='p-3 mb-2 bg-info-light text-dark'>
+                    <h4 className='text-info' >ACTIVE LISTING</h4>
+                    <h2>MY PROPERTIES</h2>
+                </div>
                 {contents}
             </div>
         );

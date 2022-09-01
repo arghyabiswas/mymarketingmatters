@@ -13,3 +13,16 @@ code {
   border-color: #1861ac;
 }
 
+.bg-info-light{
+  background-color: #a6d5e4 !important;
+}
+.property-item{
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border-bottom: solid 1px #CCC;
+}
+.empty-link{
+  text-decoration: none;
+  cursor: pointer;
+  color: #000;
+}
