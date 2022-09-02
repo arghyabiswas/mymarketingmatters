@@ -28,7 +28,7 @@ export class Home extends Component {
                             onClick={() => {property.DescriptionExpanded = !property.DescriptionExpanded; this.setState({ properties: properties, loading: false });}}
                             style={property.DidCutoff ? {} : { display: 'none' }} 
                             >
-                            {!property.DescriptionExpanded ? 'more...':'collupse'}
+                            {!property.DescriptionExpanded ? 'more...':'collapse'}
                         </a>
                         </p>
                     </div>
