@@ -24,11 +24,11 @@ export class Home extends Component {
                         <h6>{property.City}, {property.StateCode}, {property.ZipCode}</h6>
                         <p className='text-secondary' >
                         {property.DescriptionExpanded ? property.Description : property.ShortDescription}
-                        <a href='javascript:void(0)'
+                        <a className='empty-link' href='javascript:void(0)'
                             onClick={() => {property.DescriptionExpanded = !property.DescriptionExpanded; this.setState({ properties: properties, loading: false });}}
                             style={property.DidCutoff ? {} : { display: 'none' }} 
                             >
-                            {!property.DescriptionExpanded ? 'more...':'collapse'}
+                            {!property.DescriptionExpanded ? 'more...':' less'}
                         </a>
                         </p>
                     </div>
